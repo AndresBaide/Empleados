@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="empleados.list">
+      <field name="name">empleados list</field>
+      <field name="model">empleados.empleados</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="edad"/>
+          <field name="numero_tlf"/>
+          <field name="n_departamento"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- departamentos list view -->
+    <record model="ir.ui.view" id="departamentos_list">
+      <field name="name">departamentos list</field>
+      <field name="model">empleados.departamentos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="n_departamento"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="empleados.action_window">
+      <field name="name">Empleados</field> <!-- Esta parte es lo que esta abajo  -->
+      <field name="res_model">empleados.empleados</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- actions opening views on models  departamentos-->
+
+    <record model="ir.actions.act_window" id="departamentos_action_window">
+      <field name="name">Departamentos</field> <!-- Esta parte es lo que esta abajo  -->
+      <field name="res_model">empleados.departamentos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="empleados.action_server">
+      <field name="name">Empleados</field>
+      <field name="model_id" ref="model_empleados_empleados"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <!-- server action to the one above - departamentos -->
+    <record model="ir.actions.server" id="departamentos_action_server">
+      <field name="name">Departamentos</field>
+      <field name="model_id" ref="model_empleados_departamentos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Empleados" id="empleados.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Empleados" id="empleados.menu_1" parent="empleados.menu_root"/>
+    <menuitem name="Menu 2" id="empleados.menu_2" parent="empleados.menu_root"/>
+    <menuitem name="Departamentos" id="departamentos.menu_1" parent="departamentos.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="Empleados" id="empleados.menu_1_list" parent="empleados.menu_1"
+              action="empleados.action_window"/>
+    <menuitem name="Server to list" id="empleados" parent="empleados.menu_2"
+              action="empleados.action_server"/>
+    <menuitem name="Departamentos" id="departamentos.menu_1_list" parent="departamentos.menu_1"
+              action="departamentos.action_window"/>        
+  </data>
+</odoo>
