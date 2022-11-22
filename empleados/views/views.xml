@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-    <record model="ir.ui.view" id="empleados.list">
+    <record model="ir.ui.view" id="empleados_list">
       <field name="name">empleados list</field>
       <field name="model">empleados.empleados</field>
       <field name="arch" type="xml">
@@ -14,8 +14,8 @@
       </field>
     </record>
 
-    <!-- departamentos list view -->
-   <!--  <record model="ir.ui.view" id="departamentos_list">
+    <!-- explicit list view definition departamentos -->
+    <record model="ir.ui.view" id="departamentos_list">
       <field name="name">departamentos list</field>
       <field name="model">empleados.departamentos</field>
       <field name="arch" type="xml">
@@ -23,26 +23,26 @@
           <field name="n_departamento"/>
         </tree>
       </field>
-    </record> -->
+    </record>
 
     <!-- actions opening views on models -->
 
-    <record model="ir.actions.act_window" id="empleados.action_window">
+    <record model="ir.actions.act_window" id="empleados_action_window">
       <field name="name">Empleados</field> <!-- Esta parte es lo que esta abajo  -->
       <field name="res_model">empleados.empleados</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- actions opening views on models  departamentos-->
+    <!-- actions opening views on models - departamentos -->
 
-    <!-- <record model="ir.actions.act_window" id="departamentos_action_window">
-      <field name="name">Departamentos</field>
+    <record model="ir.actions.act_window" id="departamentos_action_window">
+      <field name="name">Departamentos</field> <!-- Esta parte es lo que esta abajo  -->
       <field name="res_model">empleados.departamentos</field>
       <field name="view_mode">tree,form</field>
-    </record> -->
+    </record>
 
     <!-- server action to the one above -->
-    <record model="ir.actions.server" id="empleados.action_server">
+    <record model="ir.actions.server" id="empleados_action_server">
       <field name="name">Empleados</field>
       <field name="model_id" ref="model_empleados_empleados"/>
       <field name="state">code</field>
@@ -55,8 +55,8 @@
       </field>
     </record>
 
-    <!-- server action to the one above - departamentos -->
-    <!-- <record model="ir.actions.server" id="departamentos_action_server">
+    <!-- server action to the one above departamentos -->
+    <record model="ir.actions.server" id="departamentos_action_server">
       <field name="name">Departamentos</field>
       <field name="model_id" ref="model_empleados_departamentos"/>
       <field name="state">code</field>
@@ -67,7 +67,7 @@
           "res_model": model._name,
         }
       </field>
-    </record>  -->
+    </record>
 
     <!-- Top menu item -->
 
@@ -76,15 +76,14 @@
     <!-- menu categories -->
 
     <menuitem name="Empleados" id="empleados.menu_1" parent="empleados.menu_root"/>
-    <menuitem name="Menu 2" id="empleados.menu_2" parent="empleados.menu_root"/>
-   <!-- <menuitem name="Departamentos" id="departamentos.menu_1" parent="departamentos.menu_root"/> --> 
+    
+    <menuitem name="Departamentos" id="departamentos.menu_2" parent="departamentos.menu_root"/> 
 
     <!-- actions -->
     <menuitem name="Empleados" id="empleados.menu_1_list" parent="empleados.menu_1"
               action="empleados.action_window"/>
-    <menuitem name="Server to list" id="empleados" parent="empleados.menu_2"
-              action="empleados.action_server"/>
-  <!-- <menuitem name="Departamentos" id="departamentos.menu_1_list" parent="departamentos.menu_1"
-              action="departamentos.action_window"/> -->       
+    
+    <menuitem name="Departamentos" id="departamentos.menu_2_list" parent="departamentos.menu_2"
+              action="departamentos.action_window"/>    
   </data>
 </odoo>
