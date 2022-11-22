@@ -9,10 +9,12 @@ class empleados(models.Model):
      name = fields.Char(string="Nombre")
      edad = fields.Integer(string="Edad")
      numero_tlf = fields.Char(string="Numero de telefono")
-     n_departamento = fields.Many2one('empleados.departamentos',  string="Departamentos", required=True)
+     #n_departamento = fields.Many2one('empleados.departamentos',  string="Departamentos", required=True)
      
-
-     
+#class departamentos(models.Model):
+#     _name = 'empleados.departamentos'
+#     _description = 'empleados.departamentos'
+#     n_departamento = fields.Char(string="Nombre del departamento")
      
      
      
