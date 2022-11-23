@@ -15,6 +15,7 @@ class empleados(models.Model):
      edad = fields.Integer(string="Edad")
      numero_tlf = fields.Char(string="Numero de telefono")
      n_departamento = fields.Many2one('empleados.departamentos',  string="Departamentos")
+     _rec_name='n_departamento'
 
      
      
